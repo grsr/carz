@@ -22,7 +22,7 @@ def car_list(request):
 def car_detail(request, pk):
     try:
         car = Car.objects.get(pk=pk)
-    except Car.DoesNotExist:
+    except Car.DoesNotExist :
         return Response(status=status.HTTP_404_NOT_FOUND)
 
     if request.method == 'GET':
@@ -32,7 +32,7 @@ def car_detail(request, pk):
         return Response(serializer.errors, status=status.HTTP_403_FORBIDDEN)
 
 def get_default_prefs():
-    return {field.name: 0 for field in Car._meta.fields}
+    return {field.name: 1 for field in Car._meta.fields}
 
 def find_next_car(prefs):
     top = max(prefs, key=prefs.get)
